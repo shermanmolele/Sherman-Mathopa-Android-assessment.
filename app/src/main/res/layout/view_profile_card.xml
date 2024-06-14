@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_small"
+        android:background="@color/black">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="@dimen/margin_screen_bottom_offset"
+            android:layout_height="@dimen/margin_screen_bottom_offset"
+            android:layout_margin="@dimen/margin_normal"
+            android:src="@drawable/ic_person"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/black"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/name"
+            style="@style/Material.Body1.Medium.Light"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_small"
+            app:layout_constraintBottom_toTopOf="@id/role"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/image"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Developer name" />
+
+        <TextView
+            android:id="@+id/role"
+            style="@style/Material.Body2.Light"
+            android:layout_width="0dp"
+            android:layout_margin="@dimen/margin_small"
+            android:layout_height="wrap_content"
+            android:textAppearance="?attr/textAppearanceListItem"
+            app:layout_constraintBottom_toTopOf="@id/stats"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/image"
+            app:layout_constraintTop_toBottomOf="@id/name"
+            tools:text="Developer role" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/stats"
+            android:layout_width="0dp"
+            android:padding="@dimen/padding_small"
+            android:background="@color/white"
+            android:layout_marginStart="@dimen/margin_small"
+            android:layout_marginEnd="@dimen/margin_small"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/role"
+            app:layout_constraintStart_toEndOf="@id/image"
+            app:layout_constraintBottom_toBottomOf="@id/image"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <include
+                android:id="@+id/years"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                layout="@layout/item_stats"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/coffees"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <include
+                android:id="@+id/coffees"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                layout="@layout/item_stats"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/years"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/bugs"/>
+
+            <include
+                android:id="@+id/bugs"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                layout="@layout/item_stats"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/coffees"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</merge>
