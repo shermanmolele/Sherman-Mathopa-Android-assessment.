@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.glucode.about_you.about.views.ProfileCardView
 import com.glucode.about_you.about.views.QuestionCardView
 import com.glucode.about_you.databinding.FragmentAboutBinding
 import com.glucode.about_you.mockdata.MockData
@@ -24,7 +25,23 @@ class AboutFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupEngineerProfile()
         setUpQuestions()
+    }
+
+    private fun setupEngineerProfile() {
+        val engineerName = arguments?.getString("name")
+        val engineer = MockData.engineers.first { it.name == engineerName }
+
+
+        val profileCardView = ProfileCardView(requireContext())
+        profileCardView.name = engineer.name
+        profileCardView.role = engineer.role
+        profileCardView.years = engineer.quickStats.years
+        profileCardView.bugs = engineer.quickStats.bugs
+        profileCardView.coffees = engineer.quickStats.coffees
+
+        binding.container.addView(profileCardView)
     }
 
     private fun setUpQuestions() {
