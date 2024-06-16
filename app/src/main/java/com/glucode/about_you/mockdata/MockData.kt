@@ -6,7 +6,7 @@ import com.glucode.about_you.engineers.models.Question
 import com.glucode.about_you.engineers.models.QuickStats
 
 object MockData {
-    val engineers = listOf(
+    val engineers = mutableListOf(
         Engineer(
             name = "Reenen",
             role = "Dev manager",

@@ -16,11 +16,11 @@
             android:layout_width="@dimen/margin_screen_bottom_offset"
             android:layout_height="@dimen/margin_screen_bottom_offset"
             android:layout_margin="@dimen/margin_normal"
+            android:layout_marginStart="16dp"
             android:src="@drawable/ic_person"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/black"
             tools:ignore="ContentDescription" />
 
         <TextView
@@ -53,7 +53,7 @@
             android:id="@+id/stats"
             android:layout_width="0dp"
             android:padding="@dimen/padding_small"
-            android:background="@color/white"
+            android:background="@drawable/corner"
             android:layout_marginStart="@dimen/margin_small"
             android:layout_marginEnd="@dimen/margin_small"
             android:layout_height="wrap_content"

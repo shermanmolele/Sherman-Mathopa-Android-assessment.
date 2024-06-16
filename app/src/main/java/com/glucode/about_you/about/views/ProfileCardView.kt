@@ -1,6 +1,7 @@
 package com.glucode.about_you.about.views
 
 import android.content.Context
+import android.net.Uri
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.cardview.widget.CardView
@@ -18,11 +19,25 @@ class ProfileCardView @JvmOverloads constructor(
         ViewProfileCardBinding.inflate(LayoutInflater.from(context), this)
 
 
-    init {
-        radius = resources.getDimension(R.dimen.corner_radius_normal)
-        elevation = resources.getDimension(R.dimen.elevation_normal)
-        setCardBackgroundColor(ContextCompat.getColor(context, R.color.black))
+    private var onSetProfileImage: () -> Unit = {}
+
+    constructor(
+        context: Context,
+        attrs: AttributeSet? = null,
+        defStyleAttribute: Int = 0,
+        onSetProfileImage: () -> Unit
+    ) : this(context, attrs, defStyleAttribute) {
+        this.onSetProfileImage = onSetProfileImage
     }
+
+    var imageUri: Uri? = null
+        set(value) {
+            field = value
+            binding.image.setOnClickListener {
+                onSetProfileImage()
+            }
+            if(value != null) binding.image.setImageURI(value)
+        }
 
     var name: String? = null
         set(value) {
@@ -56,5 +71,11 @@ class ProfileCardView @JvmOverloads constructor(
             binding.bugs.title.text = "Bugs"
             binding.bugs.amount.text = value.toString()
         }
+
+    init {
+        radius = resources.getDimension(R.dimen.corner_radius_normal)
+        elevation = resources.getDimension(R.dimen.elevation_normal)
+        setCardBackgroundColor(ContextCompat.getColor(context, R.color.black))
+    }
 
 }
