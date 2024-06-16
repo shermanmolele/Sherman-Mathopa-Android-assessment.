@@ -18,6 +18,7 @@ import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.glucode.about_you.R
 import com.glucode.about_you.about.views.ProfileCardView
 import com.glucode.about_you.about.views.QuestionCardView
 import com.glucode.about_you.databinding.FragmentAboutBinding
@@ -34,7 +35,7 @@ class AboutFragment: Fragment() {
             if (isGranted) {
                 openGallery()
             } else {
-               Toast.makeText(context, "Please allow storage permission to upload image", Toast.LENGTH_SHORT).show()
+               Toast.makeText(context, getString(R.string.allow_permission), Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -69,7 +70,6 @@ class AboutFragment: Fragment() {
     }
 
     private fun setupEngineerProfile(engineer: Engineer) {
-
         val profileCardView = ProfileCardView(requireContext()) {
             if (ContextCompat.checkSelfPermission(
                     requireActivity(),
@@ -133,6 +133,7 @@ class AboutFragment: Fragment() {
             }
         }
     }
+
     companion object {
         private const val REQUEST_EXTERNAL_STORAGE_PERMISSION = 1
     }

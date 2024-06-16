@@ -30,4 +30,6 @@ class AboutViewModel: ViewModel() {
     fun updateEngineerName(name: String) {
         _engineerName.value = name
     }
+
+    fun getEngineerName() = _engineerName.value
 }

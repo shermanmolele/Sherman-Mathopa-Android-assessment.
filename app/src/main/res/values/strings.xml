@@ -10,4 +10,6 @@
 
     <!--About-->
     <string name="about_screen_title">About</string>
+    <string name="allow_permission">Please allow storage permission to upload image</string>
+    <string name="name">name</string>
 </resources>
