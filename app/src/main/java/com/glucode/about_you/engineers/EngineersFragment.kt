@@ -1,17 +1,25 @@
 package com.glucode.about_you.engineers
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.glucode.about_you.R
 import com.glucode.about_you.databinding.FragmentEngineersBinding
 import com.glucode.about_you.engineers.models.Engineer
-import com.glucode.about_you.mockdata.MockData
+import kotlinx.coroutines.flow.collect
 
 class EngineersFragment : Fragment() {
     private lateinit var binding: FragmentEngineersBinding
+    private val viewModel: EngineersViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -20,7 +28,12 @@ class EngineersFragment : Fragment() {
     ): View {
         binding = FragmentEngineersBinding.inflate(inflater, container, false)
         setHasOptionsMenu(true)
-        setUpEngineersList(MockData.engineers)
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.engineers.collect {
+                setUpEngineersList(it)
+            }
+        }
+
         return binding.root
     }
 
@@ -30,10 +43,22 @@ class EngineersFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.action_years) {
-            return true
+        when (item.itemId) {
+            R.id.action_years -> {
+                viewModel.sortByYears()
+                return true
+            }
+            R.id.action_coffees -> {
+                viewModel.sortByCoffees()
+                return true
+
+            }
+            R.id.action_bugs -> {
+                viewModel.sortByBugs()
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
         }
-        return super.onOptionsItemSelected(item)
     }
 
     private fun setUpEngineersList(engineers: List<Engineer>) {
